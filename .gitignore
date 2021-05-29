@@ -119,3 +119,6 @@ data
 
 # Plots folder
 plots/
+
+# Joblib files
+*.joblib
