@@ -16,7 +16,8 @@ from sklearn import ensemble, metrics, inspection, model_selection
 do_grid_search = True
 
 # name of the file where cross validation results are written/read
-cv_results_file_name = 'BDT_cv_results.csv'
+n_estimators = 200
+cv_results_file_name = 'BDT_cv_results' + str(n_estimators) + '.csv'
 
 def MomentumModulus(px, py, pz):
     return np.sqrt(px**2 + py**2 + pz**2)
@@ -158,8 +159,8 @@ parameters = {
 	'max_features'     : [3, 6, 9],
 	'learning_rate'    : [0.05, 0.1, 0.2],
 	'subsample'        : [0.7, 1.0],
-	'n_estimators'     : [1000]
-} #50, 200, 500
+	'n_estimators'     : [n_estimators]
+} #1000 (done), 50 (done), 200, 500
 n_jobs = 10
 
 BDT = ensemble.GradientBoostingClassifier(random_state=2021)   
@@ -183,6 +184,4 @@ else:
 	cv_results = pd.read_csv(cv_results_file_name)
 
 tockGrid = time.perf_counter()
-print(f"Monte Carlo Truth imported in {(tockMCTruth - tickMCTruth)/3600:0.4f} hours.")
-
-
+print(f"Grid searched in {(tockMCTruth - tickMCTruth)/3600:0.4f} hours.")
