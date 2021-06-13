@@ -114,11 +114,7 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
-# Data symlink
-data
-
-# Plots folder
+# Folders for local files
+data/
 plots/
-
-# Joblib files
-*.joblib
+saved_states/
