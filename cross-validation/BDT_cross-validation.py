@@ -17,7 +17,7 @@ do_grid_search = True
 
 # name of the file where cross validation results are written/read
 n_estimators = 200
-cv_results_file_name = 'BDT_cv_results' + str(n_estimators) + '.csv'
+cv_results_file_name = 'BDT_cv_results_' + str(n_estimators) + '.csv'
 
 def MomentumModulus(px, py, pz):
     return np.sqrt(px**2 + py**2 + pz**2)
