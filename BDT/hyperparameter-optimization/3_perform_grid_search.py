@@ -4,20 +4,14 @@
 ## only runs a search with a specific maximum numbers of estimators, saving the results in
 ## an aptly named CSV file. See next notebook for details on CSV merging and result analysis.
 
-## Imports may be a bit too much, I basically kept them from a previous, larger notebook.
-## Might be a good idea to check them later.
 import pandas as pd
 import numpy as np
-import scipy
-from scipy import stats
-from matplotlib import pyplot as plt
-import h5py
 import time
 import joblib
-from sklearn import ensemble, metrics, inspection, model_selection
+from sklearn import ensemble, model_selection
 
 ## How many estimators (max)?
-n_estimators = 200
+n_estimators = 500
 
 ## Results CSV file
 outputDirectory = './results'
@@ -51,9 +45,6 @@ features = [
 	'DTF_FixJPsiLambda_status'
 ]
 
-df_train = pd.concat([df_signal.iloc[:signalSplitPoint], df_background.iloc[:backgroundSplitPoint]], ignore_index=True)
-df_train.dropna('columns', inplace=True)
-
 X_train = df_train.loc[:, features].to_numpy()
 Y_train = df_train.loc[:, 'TYPE'].to_numpy()
 
@@ -63,7 +54,7 @@ parameters = {
 	'learning_rate'    : [0.05, 0.1, 0.2],
 	'subsample'        : [0.7, 1.0],
 	'n_estimators'     : [n_estimators]
-} #1000 (done), 50 (done), 200, 500
+} #1000 (done), 50 (done), 200 (done), 500
 n_jobs = 10
 
 BDT = ensemble.GradientBoostingClassifier(random_state=2021)   
