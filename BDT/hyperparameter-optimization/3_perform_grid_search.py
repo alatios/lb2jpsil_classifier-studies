@@ -76,4 +76,4 @@ cv_results = pd.DataFrame(grid_search.cv_results_)
 cv_results.to_csv(outputDirectory + '/' + outputCSV, index=False)
 
 tockGrid = time.perf_counter()
-print(f"Grid searched in {(tockMCTruth - tickMCTruth)/3600:0.4f} hours.")
+print(f"Grid searched in {(tockGrid - tickGrid)/3600:0.4f} hours.")
