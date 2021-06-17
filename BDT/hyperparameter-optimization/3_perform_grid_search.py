@@ -11,14 +11,14 @@ import joblib
 from sklearn import ensemble, model_selection
 
 ## How many estimators (max)?
-n_estimators = 500
+n_estimators = 1000
 
 ## Results CSV file
 outputDirectory = './results'
 outputCSV = 'BDT_cv_results_' + str(n_estimators) + '.csv'
 
 ## Load training data
-inputTrain = '~/classifier-studies/data/trainData.h5'
+inputTrain = '~/2sb-classifier-studies/data/trainData.h5'
 df_train = pd.read_hdf(inputTrain, 'LHCb_Train')
 
 ## Perform the training using VF momenta. Using them all would be delirious,
@@ -54,7 +54,7 @@ parameters = {
 	'learning_rate'    : [0.05, 0.1, 0.2],
 	'subsample'        : [0.7, 1.0],
 	'n_estimators'     : [n_estimators]
-} #1000 (done), 50 (done), 200 (done), 500
+} #1000, 50, 200, 500
 n_jobs = 10
 
 BDT = ensemble.GradientBoostingClassifier(random_state=2021)   
@@ -76,4 +76,4 @@ cv_results = pd.DataFrame(grid_search.cv_results_)
 cv_results.to_csv(outputDirectory + '/' + outputCSV, index=False)
 
 tockGrid = time.perf_counter()
-print(f"Grid searched in {(tockMCTruth - tickMCTruth)/3600:0.4f} hours.")
+print(f"Grid searched in {(tockGrid - tickGrid)/3600:0.4f} hours.")
