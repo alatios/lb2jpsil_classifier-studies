@@ -11,7 +11,8 @@ import joblib
 from sklearn import ensemble, model_selection
 
 ## How many estimators (max)?
-n_estimators = 1000
+## 1000 (done), 500 (done), 200 (done), 50
+n_estimators = 50
 
 ## Results CSV file
 outputDirectory = './results'
@@ -54,7 +55,7 @@ parameters = {
 	'learning_rate'    : [0.05, 0.1, 0.2],
 	'subsample'        : [0.7, 1.0],
 	'n_estimators'     : [n_estimators]
-} #1000, 50, 200, 500
+}
 n_jobs = 10
 
 BDT = ensemble.GradientBoostingClassifier(random_state=2021)   
